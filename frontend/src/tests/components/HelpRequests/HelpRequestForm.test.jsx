@@ -44,9 +44,7 @@ describe("HelpRequestForm tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(
-      screen.getByTestId(`${testId}-requesterEmail`),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-requesterEmail`)).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-teamId`)).toBeInTheDocument();
     expect(
       screen.getByTestId(`${testId}-tableOrBreakoutRoom`),
