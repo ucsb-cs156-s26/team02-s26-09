@@ -43,6 +43,18 @@ describe("HelpRequestForm tests", () => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
     });
+
+    expect(
+      screen.getByTestId(`${testId}-requesterEmail`),
+    ).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-teamId`)).toBeInTheDocument();
+    expect(
+      screen.getByTestId(`${testId}-tableOrBreakoutRoom`),
+    ).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-requestTime`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-explanation`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-solved`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-submit`)).toBeInTheDocument();
   });
 
   test("renders correctly when passing in initialContents", async () => {
