@@ -6,6 +6,19 @@ import { MemoryRouter } from "react-router";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import {
+  cellToAxiosParamsDelete,
+  onDeleteSuccess,
+} from "main/utils/menuItemReviewUtils";
+
+const mockToast = vi.fn();
+vi.mock("react-toastify", async (importOriginal) => {
+  const originalModule = await importOriginal();
+  return {
+    ...originalModule,
+    toast: vi.fn((x) => mockToast(x)),
+  };
+});
 
 const mockedNavigate = vi.fn();
 vi.mock("react-router", async () => {
@@ -18,6 +31,10 @@ vi.mock("react-router", async () => {
 
 describe("MenuItemReviewTable tests", () => {
   const queryClient = new QueryClient();
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
 
   const expectedHeaders = [
     "id",
@@ -166,6 +183,23 @@ describe("MenuItemReviewTable tests", () => {
     await waitFor(() =>
       expect(mockedNavigate).toHaveBeenCalledWith("/menuitemreview/edit/1"),
     );
+  });
+
+  test("cellToAxiosParamsDelete returns the correct params", () => {
+    const cell = { row: { original: { id: 17 } } };
+    expect(cellToAxiosParamsDelete(cell)).toEqual({
+      url: "/api/menuitemreview",
+      method: "DELETE",
+      params: { id: 17 },
+    });
+  });
+
+  test("onDeleteSuccess logs and toasts the message", () => {
+    const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+    onDeleteSuccess("MenuItemReview deleted");
+    expect(consoleSpy).toHaveBeenCalledWith("MenuItemReview deleted");
+    expect(mockToast).toHaveBeenCalledWith("MenuItemReview deleted");
+    consoleSpy.mockRestore();
   });
 
   test("Delete button calls delete callback", async () => {
