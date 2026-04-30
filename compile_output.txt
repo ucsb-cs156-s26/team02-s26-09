@@ -1,0 +1,140 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< edu.ucsb.cs156:team01 >------------------------
+[INFO] Building team01 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- git-code-format:5.3:install-hooks (install-formatter-hook) @ team01 ---
+[INFO] Installing git hooks
+[INFO] Installed git hooks
+[INFO] 
+[INFO] --- jacoco:0.8.12:prepare-agent (default) @ team01 ---
+[INFO] argLine set to -javaagent:/home/parth/.m2/repository/org/jacoco/org.jacoco.agent/0.8.12/org.jacoco.agent-0.8.12-runtime.jar=destfile=/home/parth/cs156/team02/target/jacoco.exec,excludes=**/edu/ucsb/cs156/example/aop/LoggingAspect.*:**/edu/ucsb/cs156/example/config/*:**/edu/ucsb/cs156/example/controllers/FrontendController.*:**/edu/ucsb/cs156/example/controllers/FrontendProxyController.*:**/edu/ucsb/cs156/example/services/CurrentUserServiceImpl.*:**/edu/ucsb/cs156/example/services/GrantedAuthoritiesService.*:**/edu/ucsb/cs156/example/ExampleApplication.*:**/edu/ucsb/cs156/example/services/wiremock/*
+[INFO] 
+[INFO] --- git-commit-id:8.0.2:revision (default) @ team01 ---
+[INFO] dotGitDirectory '/home/parth/cs156/team02/.git'
+[INFO] Collected git.build.user.name with value Parth Mohnot
+[INFO] Collected git.build.user.email with value pmohnot@ucsb.edu
+[INFO] Collected git.branch with value PM-MenuItemsTeam01-backend-copy
+[INFO] Collected git.commit.id.describe with value b96658d-dirty
+[INFO] Collected git.commit.id.describe-short with value b96658d-dirty
+[INFO] Collected git.commit.id.full with value b96658dc01f98bb8e9f3125515db2845073c9fde
+[INFO] Collected git.commit.id.abbrev with value b96658d
+[INFO] Collected git.dirty with value true
+[INFO] Collected git.commit.user.name with value Parth Mohnot
+[INFO] Collected git.commit.user.email with value pmohnot@ucsb.edu
+[INFO] Collected git.commit.message.full with value copied files
+[INFO] Collected git.commit.message.short with value copied files
+[INFO] Collected git.commit.time with value 2026-04-29T18:37:43-07:00
+[INFO] Collected git.commit.author.time with value 2026-04-29T18:37:43-07:00
+[INFO] Collected git.commit.committer.time with value 2026-04-29T18:37:43-07:00
+[INFO] Collected git.remote.origin.url with value git@github.com:ucsb-cs156-s26/team02-s26-09.git
+[INFO] Collected git.tags with value 
+[INFO] Collected git.tag with value 
+[INFO] Collected git.closest.tag.name with value 
+[INFO] Collected git.closest.tag.commit.count with value 
+[INFO] Collected git.total.commit.count with value 114
+[INFO] Collected git.local.branch.ahead with value NO_REMOTE
+[INFO] Collected git.local.branch.behind with value NO_REMOTE
+[INFO] Collected git.build.time with value 2026-04-29T18:54:44-07:00
+[INFO] Collected git.build.version with value 1.0.0
+[INFO] Collected git.build.host with value ParthSurface
+[INFO] including property 'git.tags' in results
+[INFO] including property 'git.build.version' in results
+[INFO] including property 'git.branch' in results
+[INFO] including property 'git.build.host' in results
+[INFO] including property 'git.commit.user.email' in results
+[INFO] including property 'git.local.branch.behind' in results
+[INFO] including property 'git.commit.author.time' in results
+[INFO] including property 'git.build.user.name' in results
+[INFO] including property 'git.dirty' in results
+[INFO] including property 'git.closest.tag.commit.count' in results
+[INFO] including property 'git.commit.user.name' in results
+[INFO] including property 'git.commit.id.abbrev' in results
+[INFO] including property 'git.commit.id.describe-short' in results
+[INFO] including property 'git.total.commit.count' in results
+[INFO] including property 'git.commit.id.describe' in results
+[INFO] including property 'git.build.user.email' in results
+[INFO] including property 'git.commit.message.short' in results
+[INFO] including property 'git.commit.committer.time' in results
+[INFO] including property 'git.commit.id.full' in results
+[INFO] including property 'git.tag' in results
+[INFO] including property 'git.closest.tag.name' in results
+[INFO] including property 'git.local.branch.ahead' in results
+[INFO] including property 'git.commit.time' in results
+[INFO] including property 'git.build.time' in results
+[INFO] including property 'git.commit.message.full' in results
+[INFO] including property 'git.remote.origin.url' in results
+[INFO] Reading existing properties file [/home/parth/cs156/team02/target/classes/git.properties] (for project team01)...
+[INFO] Properties file [/home/parth/cs156/team02/target/classes/git.properties] is up-to-date (for module team01)...
+[INFO] 
+[INFO] --- git-commit-id:8.0.2:revision (get-the-git-infos) @ team01 ---
+[INFO] dotGitDirectory '/home/parth/cs156/team02/.git'
+[INFO] Collected git.build.user.name with value Parth Mohnot
+[INFO] Collected git.build.user.email with value pmohnot@ucsb.edu
+[INFO] Collected git.branch with value PM-MenuItemsTeam01-backend-copy
+[INFO] Collected git.commit.id.describe with value b96658d-dirty
+[INFO] Collected git.commit.id.describe-short with value b96658d-dirty
+[INFO] Collected git.commit.id.full with value b96658dc01f98bb8e9f3125515db2845073c9fde
+[INFO] Collected git.commit.id.abbrev with value b96658d
+[INFO] Collected git.dirty with value true
+[INFO] Collected git.commit.user.name with value Parth Mohnot
+[INFO] Collected git.commit.user.email with value pmohnot@ucsb.edu
+[INFO] Collected git.commit.message.full with value copied files
+[INFO] Collected git.commit.message.short with value copied files
+[INFO] Collected git.commit.time with value 2026-04-29T18:37:43-07:00
+[INFO] Collected git.commit.author.time with value 2026-04-29T18:37:43-07:00
+[INFO] Collected git.commit.committer.time with value 2026-04-29T18:37:43-07:00
+[INFO] Collected git.remote.origin.url with value git@github.com:ucsb-cs156-s26/team02-s26-09.git
+[INFO] Collected git.tags with value 
+[INFO] Collected git.tag with value 
+[INFO] Collected git.closest.tag.name with value 
+[INFO] Collected git.closest.tag.commit.count with value 
+[INFO] Collected git.total.commit.count with value 114
+[INFO] Collected git.local.branch.ahead with value NO_REMOTE
+[INFO] Collected git.local.branch.behind with value NO_REMOTE
+[INFO] Collected git.build.time with value 2026-04-29T18:54:45-07:00
+[INFO] Collected git.build.version with value 1.0.0
+[INFO] Collected git.build.host with value ParthSurface
+[INFO] including property 'git.tags' in results
+[INFO] including property 'git.build.version' in results
+[INFO] including property 'git.branch' in results
+[INFO] including property 'git.build.host' in results
+[INFO] including property 'git.commit.user.email' in results
+[INFO] including property 'git.local.branch.behind' in results
+[INFO] including property 'git.commit.author.time' in results
+[INFO] including property 'git.build.user.name' in results
+[INFO] including property 'git.dirty' in results
+[INFO] including property 'git.closest.tag.commit.count' in results
+[INFO] including property 'git.commit.user.name' in results
+[INFO] including property 'git.commit.id.abbrev' in results
+[INFO] including property 'git.commit.id.describe-short' in results
+[INFO] including property 'git.total.commit.count' in results
+[INFO] including property 'git.commit.id.describe' in results
+[INFO] including property 'git.build.user.email' in results
+[INFO] including property 'git.commit.message.short' in results
+[INFO] including property 'git.commit.committer.time' in results
+[INFO] including property 'git.commit.id.full' in results
+[INFO] including property 'git.tag' in results
+[INFO] including property 'git.closest.tag.name' in results
+[INFO] including property 'git.local.branch.ahead' in results
+[INFO] including property 'git.commit.time' in results
+[INFO] including property 'git.build.time' in results
+[INFO] including property 'git.commit.message.full' in results
+[INFO] including property 'git.remote.origin.url' in results
+[INFO] Reading existing properties file [/home/parth/cs156/team02/target/classes/git.properties] (for project team01)...
+[INFO] Properties file [/home/parth/cs156/team02/target/classes/git.properties] is up-to-date (for module team01)...
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ team01 ---
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] Copying 11 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ team01 ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.962 s
+[INFO] Finished at: 2026-04-29T18:54:45-07:00
+[INFO] ------------------------------------------------------------------------
