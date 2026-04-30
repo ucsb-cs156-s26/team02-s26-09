@@ -44,6 +44,12 @@ describe("MenuItemReviewForm tests", () => {
     });
 
     expect(screen.queryByTestId(`${testId}-id`)).not.toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-itemId`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-stars`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-reviewerEmail`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-dateReviewed`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-comments`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-submit`)).toBeInTheDocument();
   });
 
   test("renders correctly when passing in initialContents", async () => {
@@ -68,8 +74,15 @@ describe("MenuItemReviewForm tests", () => {
     expect(screen.getByText("Id")).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-id`)).toHaveValue("1");
     expect(screen.getByTestId(`${testId}-itemId`)).toHaveValue(1001);
+    expect(screen.getByTestId(`${testId}-stars`)).toHaveValue(5);
     expect(screen.getByTestId(`${testId}-reviewerEmail`)).toHaveValue(
       "reviewer1@ucsb.edu",
+    );
+    expect(screen.getByTestId(`${testId}-dateReviewed`)).toHaveValue(
+      "2026-04-20T12:30",
+    );
+    expect(screen.getByTestId(`${testId}-comments`)).toHaveValue(
+      "Excellent flavor and generous portion size.",
     );
   });
 
@@ -99,7 +112,7 @@ describe("MenuItemReviewForm tests", () => {
     );
 
     expect(await screen.findByText(/Create/)).toBeInTheDocument();
-    const submitButton = screen.getByText(/Create/);
+    const submitButton = screen.getByTestId(`${testId}-submit`);
     fireEvent.click(submitButton);
 
     expect(await screen.findByText(/Item Id is required/)).toBeInTheDocument();
@@ -111,6 +124,15 @@ describe("MenuItemReviewForm tests", () => {
     fireEvent.change(screen.getByTestId(`${testId}-itemId`), {
       target: { value: "0" },
     });
+    fireEvent.change(screen.getByTestId(`${testId}-stars`), {
+      target: { value: "0" },
+    });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Stars must be at least 1/)).toBeInTheDocument();
+    });
+
     fireEvent.change(screen.getByTestId(`${testId}-stars`), {
       target: { value: "6" },
     });
