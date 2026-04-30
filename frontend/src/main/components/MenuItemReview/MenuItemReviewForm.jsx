@@ -19,8 +19,6 @@ function MenuItemReviewForm({
   const testIdPrefix = "MenuItemReviewForm";
 
   // Stryker disable Regex
-  const isodateRegex =
-    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
   // Stryker restore Regex
 
@@ -125,10 +123,6 @@ function MenuItemReviewForm({
               isInvalid={Boolean(errors.dateReviewed)}
               {...register("dateReviewed", {
                 required: "Date Reviewed is required.",
-                pattern: {
-                  value: isodateRegex,
-                  message: "Date Reviewed must be in ISO format.",
-                },
               })}
             />
             <Form.Control.Feedback type="invalid">
