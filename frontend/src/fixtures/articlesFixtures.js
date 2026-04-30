@@ -3,7 +3,8 @@ const articlesFixtures = {
     id: 1,
     title: "AI Breakthrough in Climate Modeling",
     url: "https://example.org/climate-ai",
-    explanation: "Explains how new AI models improve long-term climate forecasts.",
+    explanation:
+      "Explains how new AI models improve long-term climate forecasts.",
     email: "researcher1@example.org",
     dateAdded: "2024-01-02T03:04:05",
   },
