@@ -142,6 +142,9 @@ function App() {
             exact
             path="/articles/create"
             element={<ArticlesCreatePage />}
+          />
+          <Route
+            exact
             path="/helprequests/edit/:id"
             element={<HelpRequestEditPage />}
           />
