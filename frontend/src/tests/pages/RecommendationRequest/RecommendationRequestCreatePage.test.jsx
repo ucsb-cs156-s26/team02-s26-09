@@ -116,7 +116,9 @@ describe("RecommendationRequestCreatePage tests", () => {
       done: true,
     });
 
-    expect(mockToast).toBeCalledWith("New RecommendationRequest Created - id: 7");
+    expect(mockToast).toBeCalledWith(
+      "New RecommendationRequest Created - id: 7",
+    );
     expect(mockNavigate).toBeCalledWith({ to: "/recommendationrequest" });
   });
 
