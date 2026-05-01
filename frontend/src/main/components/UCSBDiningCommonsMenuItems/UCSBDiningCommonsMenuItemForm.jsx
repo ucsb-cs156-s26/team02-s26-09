@@ -17,7 +17,6 @@ function UCSBDiningCommonsMenuItemForm({
 
   const navigate = useNavigate();
 
-
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
       <Row>
