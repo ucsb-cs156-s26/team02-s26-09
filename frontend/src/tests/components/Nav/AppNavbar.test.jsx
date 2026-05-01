@@ -194,6 +194,7 @@ describe("AppNavbar tests", () => {
   });
 
   test("renders the articles link correctly", async () => {
+  test("renders the MenuItemReview link correctly", async () => {
     const currentUser = currentUserFixtures.userOnly;
     const systemInfo = systemInfoFixtures.showingBoth;
 
@@ -218,6 +219,13 @@ describe("AppNavbar tests", () => {
   });
 
   test("Restaurant, Articles and UCSBDates links do NOT show when not logged in", async () => {
+    await screen.findByText("MenuItemReview");
+    const link = screen.getByText("MenuItemReview");
+    expect(link).toBeInTheDocument();
+    expect(link.getAttribute("href")).toBe("/menuitemreview");
+  });
+
+  test("Restaurant, UCSBDates, and MenuItemReview links do NOT show when not logged in", async () => {
     const currentUser = null;
     const systemInfo = systemInfoFixtures.showingBoth;
     const doLogin = vi.fn();
@@ -237,6 +245,32 @@ describe("AppNavbar tests", () => {
     expect(screen.queryByText("Restaurants")).not.toBeInTheDocument();
     expect(screen.queryByText("Articles")).not.toBeInTheDocument();
     expect(screen.queryByText("UCSBDates")).not.toBeInTheDocument();
+    expect(screen.queryByText("Help Requests")).not.toBeInTheDocument();
+    expect(screen.queryByText("MenuItemReview")).not.toBeInTheDocument();
+  });
+
+  test("renders the helprequests link correctly", async () => {
+    const currentUser = currentUserFixtures.userOnly;
+    const systemInfo = systemInfoFixtures.showingBoth;
+
+    const doLogin = vi.fn();
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <AppNavbar
+            currentUser={currentUser}
+            systemInfo={systemInfo}
+            doLogin={doLogin}
+          />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    await screen.findByText("Help Requests");
+    const link = screen.getByText("Help Requests");
+    expect(link).toBeInTheDocument();
+    expect(link.getAttribute("href")).toBe("/helprequests");
   });
 
   test("when oauthlogin undefined, default value is used", async () => {
