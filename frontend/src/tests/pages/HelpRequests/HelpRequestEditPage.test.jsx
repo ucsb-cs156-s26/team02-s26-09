@@ -165,6 +165,11 @@ describe("HelpRequestEditPage tests", () => {
 
       expect(axiosMock.history.put.length).toBe(1);
       expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
+      expect(JSON.parse(axiosMock.history.put[0].data)).toMatchObject({
+        requesterEmail: "ldelplaya@ucsb.edu",
+        teamId: "s22-6pm-3",
+        explanation: "Dokku problems",
+      });
     });
 
     test("Changes when you click Update", async () => {
