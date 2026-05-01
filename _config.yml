@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s26/team02-s26-09
 owner: ucsb-cs156-s26
 repo_name: team02-s26-09
-pull_requests: []
+pull_requests: [{"author":{"id":"MDQ6VXNlcjY3ODA1OTI1","is_bot":false,"login":"cboiteux2765","name":"Clement Boiteux"},"headRefName":"cb-Articles-placeholders-navbar","number":92,"title":"cb - add articles placeholders routes + navbar","url":"https://github.com/ucsb-cs156-s26/team02-s26-09/pull/92"}]
