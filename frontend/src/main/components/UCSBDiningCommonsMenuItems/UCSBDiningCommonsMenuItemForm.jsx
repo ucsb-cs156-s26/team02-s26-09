@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 function UCSBDiningCommonsMenuItemForm({
   initialContents,
   submitAction,
-  buttonLabel = "Create"
+  buttonLabel = "Create",
 }) {
   // Stryker disable all
   const {
@@ -49,7 +49,9 @@ function UCSBDiningCommonsMenuItemForm({
 
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="diningCommonsCode">Dining Commons Code</Form.Label>
+            <Form.Label htmlFor="diningCommonsCode">
+              Dining Commons Code
+            </Form.Label>
             <Form.Control
               data-testid="UCSBDiningCommonsMenuItemForm-diningCommonsCode"
               id="diningCommonsCode"
@@ -105,7 +107,10 @@ function UCSBDiningCommonsMenuItemForm({
 
       <Row>
         <Col>
-          <Button type="submit" data-testid="UCSBDiningCommonsMenuItemForm-submit">
+          <Button
+            type="submit"
+            data-testid="UCSBDiningCommonsMenuItemForm-submit"
+          >
             {buttonLabel}
           </Button>
           <Button
