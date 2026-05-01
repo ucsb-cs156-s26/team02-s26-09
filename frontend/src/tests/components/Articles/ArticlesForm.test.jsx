@@ -47,6 +47,11 @@ describe("ArticlesForm tests", () => {
     expect(screen.getByTestId(`${testId}-email`)).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-dateAdded`)).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-submit`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-title`)).toHaveValue("");
+    expect(screen.getByTestId(`${testId}-url`)).toHaveValue("");
+    expect(screen.getByTestId(`${testId}-explanation`)).toHaveValue("");
+    expect(screen.getByTestId(`${testId}-email`)).toHaveValue("");
+    expect(screen.getByTestId(`${testId}-dateAdded`)).toHaveValue("");
   });
 
   test("renders correctly when passing in initialContents", async () => {
@@ -92,6 +97,40 @@ describe("ArticlesForm tests", () => {
     await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(-1));
   });
 
+  test("renders correctly when dateAdded is already datetime-local formatted", async () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <ArticlesForm
+            initialContents={{
+              ...articlesFixtures.oneArticle,
+              dateAdded: "2024-01-02T03:04",
+            }}
+          />
+        </Router>
+      </QueryClientProvider>,
+    );
+
+    expect(await screen.findByTestId(`${testId}-dateAdded`)).toHaveValue(
+      "2024-01-02T03:04",
+    );
+  });
+
+  test("renders correctly when initialContents is missing dateAdded", async () => {
+    const { dateAdded: _dateAdded, ...articleWithoutDateAdded } =
+      articlesFixtures.oneArticle;
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <ArticlesForm initialContents={articleWithoutDateAdded} />
+        </Router>
+      </QueryClientProvider>,
+    );
+
+    expect(await screen.findByTestId(`${testId}-dateAdded`)).toHaveValue("");
+  });
+
   test("that the correct validations are performed", async () => {
     render(
       <QueryClientProvider client={queryClient}>
@@ -130,5 +169,77 @@ describe("ArticlesForm tests", () => {
 
     await screen.findByText(/URL must be valid/);
     expect(screen.getByText(/Email must be valid/)).toBeInTheDocument();
+  });
+
+  test("that max length validations are performed", async () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <ArticlesForm />
+        </Router>
+      </QueryClientProvider>,
+    );
+
+    const submitButton = await screen.findByTestId(`${testId}-submit`);
+
+    fireEvent.change(screen.getByTestId(`${testId}-title`), {
+      target: { value: "a".repeat(256) },
+    });
+    fireEvent.change(screen.getByTestId(`${testId}-url`), {
+      target: { value: "https://example.org/article" },
+    });
+    fireEvent.change(screen.getByTestId(`${testId}-explanation`), {
+      target: { value: "b".repeat(256) },
+    });
+    fireEvent.change(screen.getByTestId(`${testId}-email`), {
+      target: { value: "author@example.org" },
+    });
+    fireEvent.change(screen.getByTestId(`${testId}-dateAdded`), {
+      target: { value: "2024-01-02T03:04" },
+    });
+    fireEvent.click(submitButton);
+
+    await screen.findByText(/Title must be 255 characters or fewer/);
+    expect(
+      screen.getByText(/Explanation must be 255 characters or fewer/),
+    ).toBeInTheDocument();
+  });
+
+  test("submits correctly with valid input", async () => {
+    const mockSubmitAction = vi.fn();
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <ArticlesForm submitAction={mockSubmitAction} />
+        </Router>
+      </QueryClientProvider>,
+    );
+
+    const submitButton = await screen.findByTestId(`${testId}-submit`);
+
+    fireEvent.change(screen.getByTestId(`${testId}-title`), {
+      target: { value: "A valid title" },
+    });
+    fireEvent.change(screen.getByTestId(`${testId}-url`), {
+      target: { value: "https://example.org/article" },
+    });
+    fireEvent.change(screen.getByTestId(`${testId}-explanation`), {
+      target: { value: "A helpful explanation" },
+    });
+    fireEvent.change(screen.getByTestId(`${testId}-email`), {
+      target: { value: "author@example.org" },
+    });
+    fireEvent.change(screen.getByTestId(`${testId}-dateAdded`), {
+      target: { value: "2024-01-02T03:04" },
+    });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
+    expect(screen.queryByText(/URL must be valid/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Email must be valid/)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Title must be 255 characters or fewer/),
+    ).not.toBeInTheDocument();
   });
 });

@@ -2,14 +2,6 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
-function formatDateTimeLocalValue(value) {
-  if (!value) {
-    return "";
-  }
-
-  return value.length > 16 ? value.slice(0, 16) : value;
-}
-
 function ArticlesForm({
   initialContents,
   submitAction,
@@ -18,20 +10,12 @@ function ArticlesForm({
   const defaultValues = initialContents
     ? {
         ...initialContents,
-        dateAdded: formatDateTimeLocalValue(initialContents.dateAdded),
+        dateAdded: initialContents.dateAdded?.slice(0, 16),
       }
-    : {
-        title: "",
-        url: "",
-        explanation: "",
-        email: "",
-        dateAdded: "",
-      };
+    : undefined;
 
   // Stryker disable Regex
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
-  const isoDateTimeRegex =
-    /^\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d(:[0-5]\d(\.\d+)?)?$/i;
   // Stryker restore Regex
 
   // Stryker disable all
@@ -156,10 +140,6 @@ function ArticlesForm({
           isInvalid={Boolean(errors.dateAdded)}
           {...register("dateAdded", {
             required: "Date Added is required.",
-            pattern: {
-              value: isoDateTimeRegex,
-              message: "Date Added must be in ISO format.",
-            },
           })}
         />
         <Form.Control.Feedback type="invalid">
