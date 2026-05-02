@@ -30,6 +30,10 @@ function UCSBOrganizationForm({
           isInvalid={Boolean(errors.orgCode)}
           {...register("orgCode", {
             required: "Org Code is required.",
+            maxLength: {
+              value: 255,
+              message: "Max length 255 characters",
+            },
           })}
           disabled={Boolean(initialContents)}
         />
@@ -69,11 +73,25 @@ function UCSBOrganizationForm({
           isInvalid={Boolean(errors.orgTranslation)}
           {...register("orgTranslation", {
             required: "Org Translation is required.",
+            maxLength: {
+              value: 255,
+              message: "Max length 255 characters",
+            },
           })}
         />
         <Form.Control.Feedback type="invalid">
           {errors.orgTranslation?.message}
         </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label htmlFor="inactive">Inactive</Form.Label>
+        <Form.Check
+          data-testid={`${testIdPrefix}-inactive`}
+          id="inactive"
+          type="checkbox"
+          {...register("inactive")}
+        />
       </Form.Group>
 
       <Button type="submit" data-testid={testIdPrefix + "-submit"}>
