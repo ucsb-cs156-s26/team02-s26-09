@@ -86,17 +86,10 @@ function UCSBOrganizationForm({
 
       <Form.Group className="mb-3">
         <Form.Label htmlFor="inactive">Inactive</Form.Label>
-        <Form.Check
-          data-testid={`${testIdPrefix}-inactive`}
-          id="inactive"
-          type="checkbox"
-          {...register("inactive")}
-        />
+        <Form.Check id="inactive" type="checkbox" {...register("inactive")} />
       </Form.Group>
 
-      <Button type="submit" data-testid={testIdPrefix + "-submit"}>
-        {buttonLabel}
-      </Button>
+      <Button type="submit">{buttonLabel}</Button>
       <Button
         variant="Secondary"
         onClick={() => navigate(-1)}
