@@ -612,6 +612,7 @@
         </property>
       </activation>
       <properties>
+        <gcf.skip>true</gcf.skip>
         <springProfiles>production</springProfiles>
       </properties>
       <dependencies>
