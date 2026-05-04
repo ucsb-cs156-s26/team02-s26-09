@@ -387,6 +387,7 @@
           </execution>
         </executions>
         <configuration>
+          <skip>${maven.gitcommitid.skip}</skip>
           <generateGitPropertiesFile>true</generateGitPropertiesFile>
           <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
           <commitIdGenerationMode>full</commitIdGenerationMode>
@@ -613,6 +614,7 @@
       </activation>
       <properties>
         <gcf.skip>true</gcf.skip>
+        <maven.gitcommitid.skip>true</maven.gitcommitid.skip>
         <springProfiles>production</springProfiles>
       </properties>
       <dependencies>
