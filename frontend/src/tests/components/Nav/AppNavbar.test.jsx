@@ -213,6 +213,9 @@ describe("AppNavbar tests", () => {
     expect(screen.queryByText("Restaurants")).not.toBeInTheDocument();
     expect(screen.queryByText("UCSBDates")).not.toBeInTheDocument();
     expect(screen.queryByText("Help Requests")).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("Dining Commons Menu Items"),
+    ).not.toBeInTheDocument();
   });
 
   test("renders the helprequests link correctly", async () => {
@@ -237,6 +240,30 @@ describe("AppNavbar tests", () => {
     const link = screen.getByText("Help Requests");
     expect(link).toBeInTheDocument();
     expect(link.getAttribute("href")).toBe("/helprequests");
+  });
+
+  test("renders the dining commons menu items link correctly", async () => {
+    const currentUser = currentUserFixtures.userOnly;
+    const systemInfo = systemInfoFixtures.showingBoth;
+
+    const doLogin = vi.fn();
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <AppNavbar
+            currentUser={currentUser}
+            systemInfo={systemInfo}
+            doLogin={doLogin}
+          />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    await screen.findByText("Dining Commons Menu Items");
+    const link = screen.getByText("Dining Commons Menu Items");
+    expect(link).toBeInTheDocument();
+    expect(link.getAttribute("href")).toBe("/diningcommonsmenuitem");
   });
 
   test("when oauthlogin undefined, default value is used", async () => {
