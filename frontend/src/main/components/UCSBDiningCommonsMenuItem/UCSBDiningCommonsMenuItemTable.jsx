@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router";
 import { hasRole } from "main/utils/useCurrentUser";
 
-export default function UCSBDiningCommonsMenuItemsTable({
+export default function UCSBDiningCommonsMenuItemTable({
   menuItems,
   currentUser,
 }) {
@@ -59,7 +59,7 @@ export default function UCSBDiningCommonsMenuItemsTable({
         "Edit",
         "primary",
         editCallback,
-        "UCSBDiningCommonsMenuItemsTable",
+        "UCSBDiningCommonsMenuItemTable",
       ),
     );
     columns.push(
@@ -67,7 +67,7 @@ export default function UCSBDiningCommonsMenuItemsTable({
         "Delete",
         "danger",
         deleteCallback,
-        "UCSBDiningCommonsMenuItemsTable",
+        "UCSBDiningCommonsMenuItemTable",
       ),
     );
   }
@@ -76,7 +76,7 @@ export default function UCSBDiningCommonsMenuItemsTable({
     <OurTable
       data={menuItems}
       columns={columns}
-      testid={"UCSBDiningCommonsMenuItemsTable"}
+      testid={"UCSBDiningCommonsMenuItemTable"}
     />
   );
 }

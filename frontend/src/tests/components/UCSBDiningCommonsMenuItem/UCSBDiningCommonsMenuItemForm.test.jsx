@@ -1,5 +1,5 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
-import UCSBDiningCommonsMenuItemForm from "main/components/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemForm";
+import UCSBDiningCommonsMenuItemForm from "main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemForm";
 import { ucsbDiningCommonsMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
 import { BrowserRouter as Router } from "react-router";
 import { expect } from "vitest";

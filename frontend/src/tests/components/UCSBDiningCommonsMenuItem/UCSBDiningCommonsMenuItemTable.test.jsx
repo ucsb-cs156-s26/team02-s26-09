@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
-import { ucsbDiningCommonsMenuItemsFixtures } from "fixtures/ucsbDiningCommonsMenuItemsFixtures";
-import UCSBDiningCommonsMenuItemsTable from "main/components/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsTable";
+import { ucsbDiningCommonsMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
+import UCSBDiningCommonsMenuItemTable from "main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemTable";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
@@ -25,9 +25,9 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBDiningCommonsMenuItemsTable
+          <UCSBDiningCommonsMenuItemTable
             menuItems={
-              ucsbDiningCommonsMenuItemsFixtures.threeucsbDiningCommonsMenuItems
+              ucsbDiningCommonsMenuItemFixtures.threeucsbDiningCommonsMenuItems
             }
             currentUser={currentUser}
           />
@@ -37,7 +37,7 @@ describe("UserTable tests", () => {
 
     const expectedHeaders = ["id", "Dining Commons Code", "Name", "Station"];
     const expectedFields = ["id", "diningCommonsCode", "name", "station"];
-    const testId = "UCSBDiningCommonsMenuItemsTable";
+    const testId = "UCSBDiningCommonsMenuItemTable";
 
     expectedHeaders.forEach((headerText) => {
       const header = screen.getByText(headerText);
@@ -73,9 +73,9 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBDiningCommonsMenuItemsTable
+          <UCSBDiningCommonsMenuItemTable
             menuItems={
-              ucsbDiningCommonsMenuItemsFixtures.threeucsbDiningCommonsMenuItems
+              ucsbDiningCommonsMenuItemFixtures.threeucsbDiningCommonsMenuItems
             }
             currentUser={currentUser}
           />
@@ -85,7 +85,7 @@ describe("UserTable tests", () => {
 
     const expectedHeaders = ["id", "Dining Commons Code", "Name", "Station"];
     const expectedFields = ["id", "diningCommonsCode", "name", "station"];
-    const testId = "UCSBDiningCommonsMenuItemsTable";
+    const testId = "UCSBDiningCommonsMenuItemTable";
 
     expectedHeaders.forEach((headerText) => {
       const header = screen.getByText(headerText);
@@ -123,9 +123,9 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBDiningCommonsMenuItemsTable
+          <UCSBDiningCommonsMenuItemTable
             menuItems={
-              ucsbDiningCommonsMenuItemsFixtures.threeucsbDiningCommonsMenuItems
+              ucsbDiningCommonsMenuItemFixtures.threeucsbDiningCommonsMenuItems
             }
             currentUser={currentUser}
           />
@@ -135,12 +135,12 @@ describe("UserTable tests", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByTestId(`UCSBDiningCommonsMenuItemsTable-cell-row-0-col-id`),
+        screen.getByTestId(`UCSBDiningCommonsMenuItemTable-cell-row-0-col-id`),
       ).toHaveTextContent("1");
     });
 
     const editButton = screen.getByTestId(
-      `UCSBDiningCommonsMenuItemsTable-cell-row-0-col-Edit-button`,
+      `UCSBDiningCommonsMenuItemTable-cell-row-0-col-Edit-button`,
     );
     expect(editButton).toBeInTheDocument();
 
@@ -166,9 +166,9 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBDiningCommonsMenuItemsTable
+          <UCSBDiningCommonsMenuItemTable
             menuItems={
-              ucsbDiningCommonsMenuItemsFixtures.threeucsbDiningCommonsMenuItems
+              ucsbDiningCommonsMenuItemFixtures.threeucsbDiningCommonsMenuItems
             }
             currentUser={currentUser}
           />
@@ -180,12 +180,12 @@ describe("UserTable tests", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByTestId(`UCSBDiningCommonsMenuItemsTable-cell-row-0-col-id`),
+        screen.getByTestId(`UCSBDiningCommonsMenuItemTable-cell-row-0-col-id`),
       ).toHaveTextContent("1");
     });
 
     const deleteButton = screen.getByTestId(
-      `UCSBDiningCommonsMenuItemsTable-cell-row-0-col-Delete-button`,
+      `UCSBDiningCommonsMenuItemTable-cell-row-0-col-Delete-button`,
     );
     expect(deleteButton).toBeInTheDocument();
 
