@@ -26,7 +26,12 @@ Default.parameters = {
       });
     }),
     http.post("/api/ucsbdiningcommonsmenuitems/post", () => {
-      return HttpResponse.json({}, { status: 200 });
+      return HttpResponse.json({
+        id: 17,
+        diningCommonsCode: "ortega",
+        name: "Baked Pesto Pasta",
+        station: "Entree Specials"
+      }, { status: 200 });
     }),
   ],
 };
