@@ -7,10 +7,10 @@ export default function UCSBDiningCommonsMenuItemIndexPage() {
       <div className="pt-2">
         <h1>Index page not yet implemented</h1>
         <p>
-          <a href="/ucsbdiningcommonsmenuitem/create">Create</a>
+          <a href="/diningcommonsmenuitem/create">Create</a>
         </p>
         <p>
-          <a href="/ucsbdiningcommonsmenuitem/edit/1">Edit</a>
+          <a href="/diningcommonsmenuitem/edit/1">Edit</a>
         </p>
       </div>
     </BasicLayout>
