@@ -171,6 +171,7 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     expect(screen.queryByText(/Name is required./)).not.toBeInTheDocument();
     expect(screen.queryByText(/Station is required./)).not.toBeInTheDocument();
   });
+  
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
     render(
