@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/MenuItemReview/MenuItemReviewTable.jsx</title>
+    <title>Code coverage report for components/UCSBOrganizations/UCSBOrganizationTable.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/MenuItemReview</a> MenuItemReviewTable.jsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/UCSBOrganizations</a> UCSBOrganizationTable.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -150,14 +150,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,15 +166,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -193,17 +190,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
@@ -212,26 +212,27 @@ import { useBackendMutation } from "main/utils/useBackend";
 import {
   cellToAxiosParamsDelete,
   onDeleteSuccess,
-} from "main/utils/menuItemReviewUtils";
+} from "main/utils/UCSBOrganizationUtils";
 import { useNavigate } from "react-router";
 import { hasRole } from "main/utils/useCurrentUser";
 &nbsp;
-export default function MenuItemReviewTable({
-  reviews,
+export default function UCSBOrganizationTable({
+  ucsborganizations,
   currentUser,
-  testIdPrefix = "MenuItemReviewTable",
+  testIdPrefix = "UCSBOrganizationTable",
 }) {
   const navigate = useNavigate();
 &nbsp;
   const editCallback = (cell) =&gt; {
-    navigate(`/menuitemreview/edit/${cell.row.original.id}`);
+    navigate(`/ucsborganizations/edit/${cell.row.original.orgCode}`);
   };
 &nbsp;
   // Stryker disable all : hard to test for query caching
+&nbsp;
   const deleteMutation = useBackendMutation(
     cellToAxiosParamsDelete,
     { onSuccess: onDeleteSuccess },
-    ["/api/menuitemreview/all"],
+    ["/api/ucsborganizations/all"],
   );
   // Stryker restore all
 &nbsp;
@@ -242,28 +243,21 @@ export default function MenuItemReviewTable({
 &nbsp;
   const columns = [
     {
-      header: "id",
-      accessorKey: "id",
+      header: "Org Code",
+      accessorKey: "orgCode", // accessor is the "key" in the data
+    },
+&nbsp;
+    {
+      header: "Org Translation Short",
+      accessorKey: "orgTranslationShort",
     },
     {
-      header: "Item Id",
-      accessorKey: "itemId",
+      header: "Org Translation",
+      accessorKey: "orgTranslation",
     },
     {
-      header: "Reviewer Email",
-      accessorKey: "reviewerEmail",
-    },
-    {
-      header: "Stars",
-      accessorKey: "stars",
-    },
-    {
-      header: "Date Reviewed",
-      accessorKey: "dateReviewed",
-    },
-    {
-      header: "Comments",
-      accessorKey: "comments",
+      header: "Inactive",
+      accessorKey: "inactive",
     },
   ];
 &nbsp;
@@ -274,7 +268,13 @@ export default function MenuItemReviewTable({
     );
   }
 &nbsp;
-  return &lt;OurTable data={reviews} columns={columns} testid={testIdPrefix} /&gt;;
+  return (
+    &lt;OurTable
+      data={ucsborganizations}
+      columns={columns}
+      testid={testIdPrefix}
+    /&gt;
+  );
 }
 &nbsp;</pre></td></tr></table></pre>
 
