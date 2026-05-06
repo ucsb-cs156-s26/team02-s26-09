@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/Articles/ArticlesEditPage.jsx</title>
+    <title>Code coverage report for pages/UCSBOrganizations/UCSBOrganizationsEditPage.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/Articles</a> ArticlesEditPage.jsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/UCSBOrganizations</a> UCSBOrganizationsEditPage.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -141,7 +141,8 @@
 <a name='L76'></a><a href='#L76'>76</a>
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -182,29 +183,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -221,55 +223,56 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router";
-import ArticlesForm from "main/components/Articles/ArticlesForm";
+import UCSBOrganizationForm from "main/components/UCSBOrganizations/UCSBOrganizationForm";
 import { Navigate } from "react-router";
 import { useBackend, useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 &nbsp;
-export default function ArticlesEditPage({ storybook = false }) {
-  let { id } = useParams();
+export default function UCSBOrganizationsEditPage({ storybook = false }) {
+  let { orgCode } = useParams();
 &nbsp;
   const {
-    data: article,
+    data: ucsborganization,
     _error,
     _status,
   } = useBackend(
     // Stryker disable next-line all : don't test internal caching of React Query
-    [`/api/Articles?id=${id}`],
+    [`/api/ucsborganizations?orgCode=${orgCode}`],
     {
       // Stryker disable next-line all : GET is the default, so mutating this to "" doesn't introduce a bug
       method: "GET",
-      url: "/api/Articles",
+      url: `/api/ucsborganizations`,
       params: {
-        id,
+        orgCode,
       },
     },
   );
 &nbsp;
-  const objectToAxiosPutParams = (article) =&gt; ({
-    url: "/api/Articles",
+  const objectToAxiosPutParams = (ucsborganization) =&gt; ({
+    url: "/api/ucsborganizations",
     method: "PUT",
     params: {
-      id: article.id,
+      orgCode: ucsborganization.orgCode,
     },
     data: {
-      title: article.title,
-      url: article.url,
-      explanation: article.explanation,
-      email: article.email,
-      dateAdded: article.dateAdded,
+      orgCode: ucsborganization.orgCode,
+      orgTranslationShort: ucsborganization.orgTranslationShort,
+      orgTranslation: ucsborganization.orgTranslation,
+      inactive: ucsborganization.inactive,
     },
   });
 &nbsp;
-  const onSuccess = (article) =&gt; {
-    toast(`Article Updated - id: ${article.id} title: ${article.title}`);
+  const onSuccess = (ucsborganization) =&gt; {
+    toast(
+      `UCSBOrganization Updated - orgCode: ${ucsborganization.orgCode} orgTranslation: ${ucsborganization.orgTranslation}`,
+    );
   };
 &nbsp;
   const mutation = useBackendMutation(
     objectToAxiosPutParams,
     { onSuccess },
     // Stryker disable next-line all : hard to set up test for caching
-    [`/api/Articles?id=${id}`],
+    [`/api/ucsborganizations?orgCode=${orgCode}`],
   );
 &nbsp;
   const { isSuccess } = mutation;
@@ -279,18 +282,18 @@ export default function ArticlesEditPage({ storybook = false }) {
   };
 &nbsp;
   if (isSuccess &amp;&amp; !storybook) {
-    return &lt;Navigate to="/articles" /&gt;;
+    return &lt;Navigate to="/ucsborganizations" /&gt;;
   }
 &nbsp;
   return (
     &lt;BasicLayout&gt;
       &lt;div className="pt-2"&gt;
-        &lt;h1&gt;Edit Article&lt;/h1&gt;
-        {article &amp;&amp; (
-          &lt;ArticlesForm
+        &lt;h1&gt;Edit UCSBOrganization&lt;/h1&gt;
+        {ucsborganization &amp;&amp; (
+          &lt;UCSBOrganizationForm
             submitAction={onSubmit}
-            buttonLabel="Update"
-            initialContents={article}
+            buttonLabel={"Update"}
+            initialContents={ucsborganization}
           /&gt;
         )}
       &lt;/div&gt;
