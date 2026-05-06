@@ -289,7 +289,31 @@ describe("AppNavbar tests", () => {
     expect(link.getAttribute("href")).toBe("/diningcommonsmenuitem");
   });
 
-  test("Restaurants, Articles, UCSB Dates, MenuItemReview, and Help Requests links do NOT show when not logged in", async () => {
+  test("renders the RecommendationRequest link correctly", async () => {
+    const currentUser = currentUserFixtures.userOnly;
+    const systemInfo = systemInfoFixtures.showingBoth;
+
+    const doLogin = vi.fn();
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <AppNavbar
+            currentUser={currentUser}
+            systemInfo={systemInfo}
+            doLogin={doLogin}
+          />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    await screen.findByText("RecommendationRequest");
+    const link = screen.getByText("RecommendationRequest");
+    expect(link).toBeInTheDocument();
+    expect(link.getAttribute("href")).toBe("/recommendationrequest");
+  });
+
+  test("Restaurants, Articles, UCSB Dates, MenuItemReview, Help Requests, Dining Commons Menu Items, and RecommendationRequest links do NOT show when not logged in", async () => {
     const currentUser = null;
     const systemInfo = systemInfoFixtures.showingBoth;
     const doLogin = vi.fn();
@@ -314,6 +338,7 @@ describe("AppNavbar tests", () => {
     expect(
       screen.queryByText("Dining Commons Menu Items"),
     ).not.toBeInTheDocument();
+    expect(screen.queryByText("RecommendationRequest")).not.toBeInTheDocument();
   });
 
   test("when oauthlogin undefined, default value is used", async () => {
