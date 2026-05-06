@@ -11,7 +11,7 @@
               "not": [
                 {
                   "tableExists": {
-                    "tableName": "UCSBOrganizations"
+                    "tableName": "ucsborganizations"
                   }
                 }
               ]
@@ -27,7 +27,7 @@
                         "primaryKey": true,
                         "primaryKeyName": "UCSBORGANIZATION_PK"
                       },
-                      "name": "ORG_CODE",
+                      "name": "org_code",
                       "type": "VARCHAR(255)"
                     }
                   },
@@ -36,7 +36,7 @@
                       "constraints": {
                         "nullable": false
                       },
-                      "name": "ORG_TRANSLATION_SHORT",
+                      "name": "org_translation_short",
                       "type": "VARCHAR(255)"
                     }
                   },
@@ -45,7 +45,7 @@
                       "constraints": {
                         "nullable": false
                       },
-                      "name": "ORG_TRANSLATION",
+                      "name": "org_translation",
                       "type": "VARCHAR(255)"
                     }
                   },
@@ -54,15 +54,13 @@
                       "constraints": {
                         "nullable": false
                       },
-                      "name": "INACTIVE",
+                      "name": "inactive",
                       "type": "BOOLEAN"
                     }
-                  }]
-                ,
-                "tableName": "UCSBOrganizations"
+                  }],
+                "tableName": "ucsborganizations"
               }
             }]
-
         }
     }
 ]}
