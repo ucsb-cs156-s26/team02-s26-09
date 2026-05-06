@@ -1,9 +1,9 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import UCSBOrganizationsIndexPage from "main/pages/UCSBOrganizations/UCSBOrganizationsIndexPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
 import mockConsole from "tests/testutils/mockConsole";
-import { articlesFixtures } from "fixtures/articlesFixtures";
+import { ucsbOrganizationsFixtures } from "fixtures/ucsbOrganizationsFixtures";
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
@@ -19,10 +19,10 @@ vi.mock("react-toastify", async (importOriginal) => {
   };
 });
 
-describe("ArticlesIndexPage tests", () => {
+describe("UCSBOrganizationsIndexPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
-  const testId = "ArticlesTable";
+  const testId = "UCSBOrganizationTable";
 
   const setupUserOnly = () => {
     axiosMock.reset();
@@ -50,78 +50,83 @@ describe("ArticlesIndexPage tests", () => {
 
   test("Renders with Create Button for admin user", async () => {
     setupAdminUser();
-    axiosMock.onGet("/api/Articles/all").reply(200, []);
+    axiosMock.onGet("/api/ucsborganizations/all").reply(200, []);
 
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticlesIndexPage />
+          <UCSBOrganizationsIndexPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
     await waitFor(() => {
-      expect(screen.getByText(/Create Article/)).toBeInTheDocument();
+      expect(screen.getByText(/Create UCSBOrganization/)).toBeInTheDocument();
     });
-    const button = screen.getByText(/Create Article/);
-    expect(button).toHaveAttribute("href", "/articles/create");
+    const button = screen.getByText(/Create UCSBOrganization/);
+    expect(button).toHaveAttribute("href", "/ucsborganizations/create");
     expect(button).toHaveAttribute("style", "float: right;");
   });
 
-  test("renders three articles correctly for regular user", async () => {
+  test("renders three organizations correctly for regular user", async () => {
     setupUserOnly();
     axiosMock
-      .onGet("/api/Articles/all")
-      .reply(200, articlesFixtures.threeArticles);
+      .onGet("/api/ucsborganizations/all")
+      .reply(200, ucsbOrganizationsFixtures.threeOrganizations);
 
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticlesIndexPage />
+          <UCSBOrganizationsIndexPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
     await waitFor(() => {
       expect(
-        screen.getByTestId(`${testId}-cell-row-0-col-id`),
-      ).toHaveTextContent("1");
+        screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
+      ).toHaveTextContent("ZPR");
     });
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
-      "2",
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-orgCode`),
+    ).toHaveTextContent("SKY");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-orgCode`),
+    ).toHaveTextContent("OSLI");
+
+    const createUCSBOrganization = screen.queryByText(
+      "Create UCSBOrganization",
     );
-    expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent(
-      "3",
-    );
+    expect(createUCSBOrganization).not.toBeInTheDocument();
 
-    const createArticleButton = screen.queryByText("Create Article");
-    expect(createArticleButton).not.toBeInTheDocument();
+    const orgCode = screen.getByText("ZPR");
+    expect(orgCode).toBeInTheDocument();
 
-    expect(
-      screen.getByText("AI Breakthrough in Climate Modeling"),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText("https://example.org/climate-ai"),
-    ).toBeInTheDocument();
+    const orgTranslationShort = screen.getByText("SKYDIVING CLUB AT UCSB");
+    expect(orgTranslationShort).toBeInTheDocument();
 
+    // for non-admin users, details button is visible, but the edit and delete buttons should not be visible
     expect(
-      screen.queryByTestId("ArticlesTable-cell-row-0-col-Delete-button"),
+      screen.queryByTestId(
+        "UCSBOrganizationTable-cell-row-0-col-Delete-button",
+      ),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByTestId("ArticlesTable-cell-row-0-col-Edit-button"),
+      screen.queryByTestId("UCSBOrganizationTable-cell-row-0-col-Edit-button"),
     ).not.toBeInTheDocument();
   });
 
   test("renders empty table when backend unavailable, user only", async () => {
     setupUserOnly();
-    axiosMock.onGet("/api/Articles/all").timeout();
+
+    axiosMock.onGet("/api/ucsborganizations/all").timeout();
 
     const restoreConsole = mockConsole();
 
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticlesIndexPage />
+          <UCSBOrganizationsIndexPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
@@ -132,7 +137,7 @@ describe("ArticlesIndexPage tests", () => {
 
     const errorMessage = console.error.mock.calls[0][0];
     expect(errorMessage).toMatch(
-      "Error communicating with backend via GET on /api/Articles/all",
+      "Error communicating with backend via GET on /api/ucsborganizations/all",
     );
     restoreConsole();
   });
@@ -141,29 +146,29 @@ describe("ArticlesIndexPage tests", () => {
     setupAdminUser();
 
     axiosMock
-      .onGet("/api/Articles/all")
-      .reply(200, articlesFixtures.threeArticles);
+      .onGet("/api/ucsborganizations/all")
+      .reply(200, ucsbOrganizationsFixtures.threeOrganizations);
     axiosMock
-      .onDelete("/api/Articles")
-      .reply(200, "Articles with id 1 deleted");
+      .onDelete("/api/ucsborganizations")
+      .reply(200, "Organization with orgCode ZPR was deleted");
 
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticlesIndexPage />
+          <UCSBOrganizationsIndexPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
     await waitFor(() => {
       expect(
-        screen.getByTestId(`${testId}-cell-row-0-col-id`),
+        screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
       ).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent(
-      "1",
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
+    ).toHaveTextContent("ZPR");
 
     const deleteButton = await screen.findByTestId(
       `${testId}-cell-row-0-col-Delete-button`,
@@ -173,13 +178,16 @@ describe("ArticlesIndexPage tests", () => {
     fireEvent.click(deleteButton);
 
     await waitFor(() => {
-      expect(mockToast).toBeCalledWith("Articles with id 1 deleted");
+      expect(mockToast).toBeCalledWith(
+        "Organization with orgCode ZPR was deleted",
+      );
     });
 
     await waitFor(() => {
       expect(axiosMock.history.delete.length).toBe(1);
     });
-    expect(axiosMock.history.delete[0].url).toBe("/api/Articles");
-    expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
+    expect(axiosMock.history.delete[0].url).toBe("/api/ucsborganizations");
+    expect(axiosMock.history.delete[0].url).toBe("/api/ucsborganizations");
+    expect(axiosMock.history.delete[0].params).toEqual({ orgCode: "ZPR" });
   });
 });
