@@ -157,7 +157,7 @@ describe("UCSBDiningCommonsMenuItemIndexPage tests", () => {
         ucsbDiningCommonsMenuItemFixtures.threeucsbDiningCommonsMenuItems,
       );
     axiosMock
-      .onDelete("/api/ucsbdiningcommonsmenuitem")
+      .onDelete("/api/ucsbdiningcommonsmenuitems")
       .reply(200, "UCSBDiningCommonsMenuItem with id 1 was deleted");
 
     render(
@@ -195,7 +195,7 @@ describe("UCSBDiningCommonsMenuItemIndexPage tests", () => {
       expect(axiosMock.history.delete.length).toBe(1);
     });
     expect(axiosMock.history.delete[0].url).toBe(
-      "/api/ucsbdiningcommonsmenuitem",
+      "/api/ucsbdiningcommonsmenuitems",
     );
     expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
   });
