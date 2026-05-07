@@ -25,7 +25,7 @@ export default function UCSBDiningCommonsMenuItemTable({
     cellToAxiosParamsDelete,
     { onSuccess: onDeleteSuccess },
     // Stryker disable next-line all : don't test internal caching of React Query
-    ["/api/ucsbdiningcommonsmenuitem/all"],
+    ["/api/ucsbdiningcommonsmenuitems/all"],
   );
   // Stryker restore all
 
