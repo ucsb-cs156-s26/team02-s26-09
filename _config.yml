@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s26/team02-s26-09
 owner: ucsb-cs156-s26
 repo_name: team02-s26-09
-pull_requests: [{"author":{"id":"U_kgDODER-4g","is_bot":false,"login":"nathanqiuUCSB","name":"Nathan_Qiu"},"headRefName":"nq-commits-integration-tests","number":126,"title":"integration tests and end to end tests for Recommendation Requests","url":"https://github.com/ucsb-cs156-s26/team02-s26-09/pull/126"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjY3ODA1OTI1","is_bot":false,"login":"cboiteux2765","name":"Clement Boiteux"},"headRefName":"cb-articles-tests","number":136,"title":"cb - create articles integ and E2E tests","url":"https://github.com/ucsb-cs156-s26/team02-s26-09/pull/136"},{"author":{"id":"U_kgDODER-4g","is_bot":false,"login":"nathanqiuUCSB","name":"Nathan_Qiu"},"headRefName":"nq-commits-integration-tests","number":126,"title":"integration tests and end to end tests for Recommendation Requests","url":"https://github.com/ucsb-cs156-s26/team02-s26-09/pull/126"}]
